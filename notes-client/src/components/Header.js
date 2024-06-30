@@ -1,12 +1,12 @@
-import LinkContainer from 'react-router-bootstrap';
-import { Button, Row, Col } from 'react-boostrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 
 function Header() {
   return (
     <Row>
-      <Col>SimplyNoting</Col>
+      <Col><h1>SimplyNoting</h1></Col>
       <Col>
-        <LinkContainer>
+        <LinkContainer to='/new'>
           <Button className='float-end'>
             New note
           </Button>
