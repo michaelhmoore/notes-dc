@@ -1,4 +1,3 @@
-import { findAllByTestId } from '@testing-library/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +8,8 @@ function NewNote() {
   const navigate = useNavigate();
   const handleClose = () => {
     setShow(false);
-    navigate(-1)
+    navigate(-1);
+    //set up cancel/x route vs. save route, separate functions
   };
   const handleShow = () => setShow(true);
   return (
