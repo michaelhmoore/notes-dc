@@ -1,9 +1,35 @@
-import { LinkContainer } from 'react-router-bootstrap';
-import { Button, Row, Col } from 'react-bootstrap';
+import { findAllByTestId } from '@testing-library/react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function NewNote() {
+  const [show, setShow] = useState(true);
+  const navigate = useNavigate();
+  const handleClose = () => {
+    setShow(false);
+    navigate(-1)
+  };
+  const handleShow = () => setShow(true);
   return (
-    <h1>new note component</h1>
+    <>
+      <Button variant='primary' onClick={handleShow}>
+        Create a new note
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Title>note title</Modal.Title>
+        <Modal.Body>note body</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose}>
+            Close
+          </Button>      
+          <Button variant='primary' onClick={handleClose}>
+            Save note            
+          </Button>
+        </Modal.Footer>
+      </Modal>    
+    </>
   );
 }
 

@@ -28,7 +28,7 @@ async function addNote(note) {
       headers: {
          "Content-Type": "application/json",
       },
-      body: JSON.stringify(message),
+      body: JSON.stringify(note),
    })
    if (response.ok) {
       return response.body;       
