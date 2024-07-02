@@ -1,14 +1,20 @@
 const apiEndpoint = "http://localhost:8000/api/notes";
 
 async function getNotes() {
-   const response = await fetch(apiEndpoint);
-   if (response.ok) {
-      return response.json();        
-   }
-   else {
-      console.log(response);
-      return null;
-   }
+  try {
+    const response = await fetch('http://localhost:8000/api/notes');
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      return data;
+    } else {
+      console.error('data is not an array', data);
+      return [];
+    }
+  } catch (error) {
+    console.error('error fetching notes', error);
+    return [];
+  }
+
 }
 
 async function getNote(noteId) {
@@ -22,7 +28,7 @@ async function getNote(noteId) {
    }
 }
 
-async function addNote(note) {
+async function newNote(note) {
    const response = await fetch(apiEndpoint, {
       method: "POST",
       headers: {
@@ -72,7 +78,7 @@ async function deleteNote(noteId) {
 export {      
    getNotes,
    getNote,
-   addNote,
+   newNote,
    editNote,
    deleteNote
 };
