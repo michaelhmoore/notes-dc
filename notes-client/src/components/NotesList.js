@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 import Note from './Note';
 import { getNotes, deleteNote } from '../NoteAPI';
@@ -16,11 +16,15 @@ function NotesList() {
   useEffect(() => {
     async function getAllNotes() {
       const notes = await getNotes();
+      console.log('fetched notes', notes);
       setNotes(notes);
       setIsLoading(false);
     }
 
-    getAllNotes();
+    getAllNotes().catch(error => {
+      console.error('Error in getAllNotes:', error);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
@@ -30,10 +34,15 @@ function NotesList() {
           <Spinner animation='border' role='status'>
           <span className="visually-hidden">Loading...</span>
           </Spinner>
-        ) : notes.map(note => (
-          <Note key={note._id} value={note} delete={deleteFromList} />
-        ))
-      }
+        ) : (
+          notes.length > 0 ? (
+            notes.map(note => (
+              <Note key={note._id} value={note} delete={deleteFromList} />
+            ))
+          ) : (
+            <p>No notes available.</p>
+          )
+      )}
     </>
   );
 }

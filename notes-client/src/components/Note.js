@@ -1,5 +1,5 @@
-import { Card } from 'react-bootstrap/Card'
-import { CloseButton } from 'react-bootstrap/CloseButton'
+import Card from 'react-bootstrap/Card'
+import CloseButton from 'react-bootstrap/CloseButton'
 import ReactTimeAgo from 'react-time-ago';
 import { Link } from 'react-router-dom'
 import React from 'react';
@@ -20,7 +20,6 @@ function Note(props) {
         {note.username}
         <ReactTimeAgo className='float-end' date={new Date(note.posted)} locale='en-US' />
       </Card.Footer>
-
     </Card>
   );
 }

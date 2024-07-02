@@ -47,7 +47,7 @@ function NewNote() {
           <Form.Group className='mb-3' controlId='noteText'>
             <Modal.Body>
               <Form.Label>noteText</Form.Label>
-              <Form.Control type='textarea' rows={3} value={inputs.noteText} onChange={(e) => handleChange('text', e.target.value)} />
+              <Form.Control as='textarea' rows={3} value={inputs.noteText} onChange={(e) => handleChange('noteText', e.target.value)} />
             </Modal.Body>
           </Form.Group>
           <Modal.Footer>
