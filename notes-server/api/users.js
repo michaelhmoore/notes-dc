@@ -31,20 +31,18 @@ router.post('/register', async function(req, res) {
 //POST/login
 router.post('/login', async function (req, res) {
   const { username, password } = req.body;
-
+  //validation -- check if fields are empty
   const user = await User.findOne({ username });
-  /*const pw = user.passwordHash;
-  console.log(user.passwordHash)
-  res.json({pw})*/
   
   if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
     return res.status(401).json({ message: 'INvalid username or password'});
   }
+  //authentication and sending token
   if (await bcrypt.compare(password, user.passwordHash)) {
-    const token = jwt.encode({ username }, secret);
+    const token = jwt.encode({ username: user.username, userId: user._id }, secret);
     res.json({ token : token});
   } else {
-    res.json({error: 'Error'});
+    res.status(500).json({message: 'login failed', error: err.message});
   }
     
 });
