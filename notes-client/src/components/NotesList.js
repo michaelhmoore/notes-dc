@@ -3,8 +3,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Note from './Note';
 import { getNotes, deleteNote } from '../NoteAPI';
 import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
+
 
 function NotesList() {
   const [notes, setNotes] = useState([]);

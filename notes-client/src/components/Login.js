@@ -45,7 +45,7 @@ function Login() {
           onChange={(e) => handleChange('password', e.target.value)}
         />
       </Form.Group>
-      <Button type="submit">Login</Button>
+      <Button type="submit" className='mt-3 float-end' variant='outline-primary'>Login</Button>
     </Form>
   );
 }

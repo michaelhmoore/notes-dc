@@ -36,7 +36,7 @@ function EditNote() {
       const note = await getNote(noteId);
       setInputs({
         title: note.title,
-        text: note.noteText
+        noteText: note.text
       });
     }
     loadNote();
@@ -57,7 +57,7 @@ function EditNote() {
           <Form.Group className='mb-3' controlId='noteText'>
             <Modal.Body>
               <Form.Label>noteText</Form.Label>
-              <Form.Control as='textarea' rows={3} value={inputs.noteText} onChange={(e) => handleChange('noteText', e.target.value)} />
+              <Form.Control as='textarea' rows={3} value={inputs.text} onChange={(e) => handleChange('noteText', e.target.value)} />
             </Modal.Body>
           </Form.Group>
           <Modal.Footer>
@@ -65,7 +65,7 @@ function EditNote() {
               Close
             </Button>      
             <Button variant='primary' type='submit' className='me-2' onClick={handleClose}>
-              Save note            
+              Save edits            
             </Button>
           </Modal.Footer>
         </Form>

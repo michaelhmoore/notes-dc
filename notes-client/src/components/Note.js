@@ -13,11 +13,12 @@ function Note(props) {
     <Card className = 'mb-3'>
       <Card.Body>
         <CloseButton className='float-end' onClick={() => deleteNote(note._id)} />
-        <Link to={editRoute} className='float-end'>edit</Link>
-        {note.text}
+        <Link to={editRoute} className='float-end me-3'>Edit note</Link>
+        <Card.Title>{note.title}</Card.Title>
+        <Card.Text>{note.text}</Card.Text>
       </Card.Body>
       <Card.Footer className='text-muted'>
-        {note.username}
+        <span>{note.username}</span>
         <ReactTimeAgo className='float-end' date={new Date(note.posted)} locale='en-US' />
       </Card.Footer>
     </Card>

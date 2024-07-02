@@ -20,8 +20,8 @@ function Register() {
     };
     const response = await registerUser(user);
     if (response._id) {
-      alert('Registration success! Loggin in...')
-      navigate('/');
+      alert('Registration success! Please proceed to login.')
+      navigate('/login');
     } else {
       console.error('Registration failed:', response.message);
     }
@@ -45,7 +45,7 @@ function Register() {
           onChange={(e) => handleChange('password', e.target.value)}
         />
       </Form.Group>
-      <Button type="submit">Register</Button>
+      <Button type="submit" className='mt-3 float-end' variant='outline-secondary'>Register</Button>
     </Form>
   );
 }

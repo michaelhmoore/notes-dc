@@ -46,13 +46,13 @@ function NewNote() {
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3' controlId='title'>
             <Modal.Title>
-              <Form.Label>title</Form.Label>
+              <Form.Label>Note title</Form.Label>
               <Form.Control type='text' value={inputs.title} onChange={(e) => handleChange('title', e.target.value)} />
             </Modal.Title>
           </Form.Group>
           <Form.Group className='mb-3' controlId='noteText'>
             <Modal.Body>
-              <Form.Label>noteText</Form.Label>
+              <Form.Label>Write your thoughts..</Form.Label>
               <Form.Control as='textarea' rows={3} value={inputs.noteText} onChange={(e) => handleChange('noteText', e.target.value)} />
             </Modal.Body>
           </Form.Group>

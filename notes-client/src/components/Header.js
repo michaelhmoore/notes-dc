@@ -38,14 +38,14 @@ function Header() {
           </>
         ) : (
           <>
-            <LinkContainer to='/login'>
-              <Button className='ms-2 float-end'>
-                Login
+            <LinkContainer to='/register'>
+              <Button className='ms-2' variant='outline-secondary'>
+                Register
               </Button>
             </LinkContainer>
-            <LinkContainer to='/register'>
-              <Button className='ms-2'>
-                Register
+            <LinkContainer to='/login'>
+              <Button className='ms-2 float-end' variant='outline-primary'>
+                Login
               </Button>
             </LinkContainer>
           </>
