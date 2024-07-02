@@ -10,6 +10,7 @@ function NewNote() {
   const [inputs, setInputs] = useState({ title: '', noteText: ''});
 
   const navigate = useNavigate();
+
   const handleClose = () => {
     setShow(false);
     navigate(-1);
@@ -18,6 +19,11 @@ function NewNote() {
   function handleChange(name, value) {
     setInputs(values => ({ ...values, [name]: value }));
   }
+
+  /*async function handleSave() {
+    await newNote(note);
+    handleClose();
+  }*/
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +34,7 @@ function NewNote() {
     };
 
     await newNote(note);
-    navigate(-1);
+    handleClose();
   }
   const handleShow = () => setShow(true);
   return (
@@ -54,7 +60,7 @@ function NewNote() {
             <Button variant='secondary' onClick={handleClose}>
               Close
             </Button>      
-            <Button variant='primary' onClick={handleClose}>
+            <Button variant='primary' type='submit'>
               Save note            
             </Button>
           </Modal.Footer>

@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 import Note from './Note';
 import { getNotes, deleteNote } from '../NoteAPI';
+import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const token = localStorage.getItem('token');
+const navigate = useNavigate();
+
+
 
   function deleteFromList(noteId) {
     deleteNote(noteId);
@@ -14,7 +21,7 @@ function NotesList() {
   }
 
   useEffect(() => {
-    async function getAllNotes() {
+      async function getAllNotes() {
       const notes = await getNotes();
       console.log('fetched notes', notes);
       setNotes(notes);
@@ -25,7 +32,11 @@ function NotesList() {
       console.error('Error in getAllNotes:', error);
       setIsLoading(false);
     });
-  }, []);
+
+    if (!token) {
+      navigate('/');
+    } 
+  }, [navigate, token]);
 
   return (
     <>
@@ -40,7 +51,7 @@ function NotesList() {
               <Note key={note._id} value={note} delete={deleteFromList} />
             ))
           ) : (
-            <p>No notes available.</p>
+            <p>Oops! You haven't written any notes! Create a new one to get started !</p>
           )
       )}
     </>

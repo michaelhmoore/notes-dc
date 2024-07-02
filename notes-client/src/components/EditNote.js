@@ -28,7 +28,7 @@ function EditNote() {
     };
 
     await editNote(noteId, notePart);
-    navigate(-1);
+    navigate('/');
   }
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function EditNote() {
       const note = await getNote(noteId);
       setInputs({
         title: note.title,
-        text: note.text
+        text: note.noteText
       });
     }
     loadNote();
@@ -47,10 +47,12 @@ function EditNote() {
       <Modal show={true} onHide={handleClose}>
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3' controlId='title'>
-            <Modal.Title>
-              <Form.Label>title</Form.Label>
-              <Form.Control type='text' value={inputs.title} onChange={(e) => handleChange('title', e.target.value)} />
-            </Modal.Title>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <Form.Label>title</Form.Label>
+                <Form.Control type='text' value={inputs.title} onChange={(e) => handleChange('title', e.target.value)} />
+              </Modal.Title>
+            </Modal.Header>
           </Form.Group>
           <Form.Group className='mb-3' controlId='noteText'>
             <Modal.Body>
