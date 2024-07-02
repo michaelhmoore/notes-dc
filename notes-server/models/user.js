@@ -2,8 +2,9 @@ const db = require('../db');
 
 const User = db.model('User', {
   username: { type: String, unique: true, required: true },
-  password: { type: String, required: true},
-  posted: { type: Date, default: Date.now }
+  passwordHash: { type: String, required: true},
+  userSince: { type: Date, default: Date.now }
+  // do we need anything else here
 });
 
-module.exports = Note;
+module.exports = User;

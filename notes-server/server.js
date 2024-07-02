@@ -9,8 +9,9 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use('/api/notes', require('./api/notes'));
+app.use('/api/users', require('./api/users'))
 
 const port = 8000;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+app.listen(port, () => console.log(`server listening on port ${port}`));
 
 module.exports = app;
