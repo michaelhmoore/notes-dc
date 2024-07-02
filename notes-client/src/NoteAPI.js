@@ -1,8 +1,18 @@
 const apiEndpoint = "http://localhost:8000/api/notes";
 
+function getAuth() {
+  const token = localStorage.getItem('token');
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+}
+
 async function getNotes() {
   try {
-    const response = await fetch('http://localhost:8000/api/notes');
+    const response = await fetch('http://localhost:8000/api/notes', {
+      headers: getAuth(),
+    });
     const data = await response.json();
     if (Array.isArray(data)) {
       return data;
@@ -18,7 +28,9 @@ async function getNotes() {
 }
 
 async function getNote(noteId) {
-   const response = await fetch(`${apiEndpoint}/${noteId}`);
+   const response = await fetch(`${apiEndpoint}/${noteId}`, {
+    headers: getAuth(),
+   });
    if (response.ok) {
       return response.json();       
    }
@@ -31,12 +43,11 @@ async function getNote(noteId) {
 async function newNote(note) {
    const response = await fetch(apiEndpoint, {
       method: "POST",
-      headers: {
-         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(note),
-   })
-   if (response.ok) {
+      headers: getAuth(),
+    //refactor code to add content-type t to authorization headers
+    body: JSON.stringify(note)
+      })
+      if (response.ok) {
       return response.body;       
    }
    else {
@@ -48,9 +59,7 @@ async function newNote(note) {
 async function editNote(noteId, notePart) {
    const response = await fetch(`${apiEndpoint}/${noteId}`, {
       method: "PUT",
-      headers: {
-         "Content-Type": "application/json",
-      },
+      headers: getAuth(),
       body: JSON.stringify(notePart),
    })
    if (response.ok) {
@@ -64,7 +73,8 @@ async function editNote(noteId, notePart) {
 
 async function deleteNote(noteId) {
    const response = await fetch(`${apiEndpoint}/${noteId}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: getAuth()
    });
    if (response.ok) {
       return response.body;
