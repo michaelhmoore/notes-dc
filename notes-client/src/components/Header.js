@@ -1,6 +1,7 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 function Header() {
@@ -8,9 +9,16 @@ function Header() {
   const token = localStorage.getItem('token');
   // create header that's changed based on authenitcation
 
+  /*const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setAuthenticated(!!token);
+  }, [])*/
+
   function handleLogout() {
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
+    window.location.reload();
   }
 
   return (
@@ -27,9 +35,6 @@ function Header() {
                 New note
               </Button>
             </LinkContainer>
-            <Button className='float-end me-2' onClick={handleLogout}>
-              Logout
-            </Button>
           </>
         ) : (
           <>
